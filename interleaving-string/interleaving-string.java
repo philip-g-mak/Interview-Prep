@@ -1,34 +1,20 @@
 class Solution {
-    int[][] memo;
     public boolean isInterleave(String s1, String s2, String s3) {
-        memo = new int[s1.length()][s2.length()];
-        for(int i = 0; i < s1.length(); i++){
-            for(int j = 0; j < s2.length(); j++){
-                memo[i][j] = -1;
-            }
-        }
-        return isInterleaveHelper(s1, 0, s2, 0, s3,0);
-    }
-    
-    public boolean isInterleaveHelper(String s1, int i, String s2,int j, String s3, int k){
-       if(i == s1.length()){
-           return s2.substring(j).equals(s3.substring(k));
-       }
-        if(j == s2.length()){
-           return s1.substring(i).equals(s3.substring(k));
-       }
-        if(memo[i][j] >= 0){
-            return memo[i][j] == 1 ? true : false;
-        }
-        
-        boolean ans = false;
-        if(s3.charAt(k) == s1.charAt(i) && isInterleaveHelper(s1, i+1, s2, j, s3, k+1) ||s3.charAt(k) == s2.charAt(j) && isInterleaveHelper(s1, i, s2, j+1, s3, k+1)){
-            ans = true;
-        }
-        
-        memo[i][j] = ans ? 1 : 0;
-        return ans;
-    }
+    char[] c1 = s1.toCharArray(), c2 = s2.toCharArray(), c3 = s3.toCharArray();
+	int m = s1.length(), n = s2.length();
+	if(m + n != s3.length()) return false;
+	return dfs(c1, c2, c3, 0, 0, 0, new boolean[m + 1][n + 1]);
+}
+
+public boolean dfs(char[] c1, char[] c2, char[] c3, int i, int j, int k, boolean[][] invalid) {
+	if(invalid[i][j]) return false;
+	if(k == c3.length) return true;
+	boolean valid = 
+	    i < c1.length && c1[i] == c3[k] && dfs(c1, c2, c3, i + 1, j, k + 1, invalid) || 
+        j < c2.length && c2[j] == c3[k] && dfs(c1, c2, c3, i, j + 1, k + 1, invalid);
+	if(!valid) invalid[i][j] = true;
+    return valid;
+}
 }
 
 /*
