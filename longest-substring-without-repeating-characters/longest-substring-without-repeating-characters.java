@@ -1,19 +1,20 @@
 class Solution {
     public int lengthOfLongestSubstring(String s) {
-        Set<Character> charSet = new HashSet();
+        Map<Character, Integer> charMap = new HashMap();
         
         int l = 0, r = 0;
         int maxLen = 0;
         
         while(l <= r && r < s.length()){
-            if(!charSet.contains(s.charAt(r))){
-                charSet.add(s.charAt(r));
-                maxLen = Math.max(r - l + 1, maxLen);
-                r++;
-            } else {
-                charSet.remove(s.charAt(l));
-                l++;
-            }
+            if(charMap.containsKey(s.charAt(r))){
+                l= Math.max(charMap.get(s.charAt(r)), l);
+            } 
+
+            maxLen = Math.max(r - l + 1, maxLen);
+            charMap.put(s.charAt(r), r+1);
+
+            r++;
+
         }
         return maxLen;
     }
@@ -35,5 +36,11 @@ in loop while R is not at the end of the string and no overlap(?)
     
 time O(n)
 space O(n)
+
+improved way using a hashmap
+idea- same as before except we store the location of each letter in a map <letter : index>
+      when we find a repeating character, we jump L pointer forward
+      L  R
+      abcbzxy
 
 */
