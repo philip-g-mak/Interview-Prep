@@ -13,9 +13,9 @@ class Solution {
         
         int roomCount = 0;
         for(int startIndex = 0, endIndex = 0; startIndex < start.length; startIndex++){
-            if(start[startIndex] < end[endIndex]){
+            if(start[startIndex] < end[endIndex]){  //if a meeting starts before another meeting ends - we need another room
                 roomCount++;
-            } else {
+            } else {  //else continue with meetings
                 endIndex++;
             }
         }
