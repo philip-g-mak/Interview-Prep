@@ -1,3 +1,4 @@
+[Discussion Post (created on 18/2/2021 at 21:50)](https://leetcode.com/problems/meeting-rooms/discuss/?currentPage=1&orderBy=most_votes&query=)  
 <h2>252. Meeting Rooms</h2><h3>Easy</h3><hr><div><p>Given an array of meeting time <code>intervals</code>&nbsp;where <code>intervals[i] = [start<sub>i</sub>, end<sub>i</sub>]</code>, determine if a person could attend all meetings.</p>
 
 <p>&nbsp;</p>
