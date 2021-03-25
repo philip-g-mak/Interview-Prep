@@ -1,26 +1,27 @@
 class Solution {
     public String minRemoveToMakeValid(String s) {
         StringBuilder sb = new StringBuilder(s);
-        Stack<Integer> stack = new Stack();
+        Stack<Integer> removeStack = new Stack();
         
         for(int i = 0; i < sb.length(); i++){
             if(sb.charAt(i) == '('){
-                stack.push(i);
+                removeStack.add(i);
             }
+            
             if(sb.charAt(i) == ')'){
-                if(!stack.isEmpty()){
-                    stack.pop();
-                } else {
+                if(removeStack.isEmpty()){
                     sb.deleteCharAt(i);
                     i--;
+                } else {
+                    removeStack.pop();
                 }
             }
         }
         
-        while(!stack.isEmpty()){
-            sb.deleteCharAt(stack.pop());
+        while(!removeStack.isEmpty()){
+            sb.deleteCharAt(removeStack.pop());
         }
-        return sb.toString();
         
+        return sb.toString();
     }
 }
