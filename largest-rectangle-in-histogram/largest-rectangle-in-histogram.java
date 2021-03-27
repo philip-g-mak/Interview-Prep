@@ -18,3 +18,22 @@ class Solution {
         return maxArea;
     }
 }
+
+/*idea - use a stack to keep track of indexes of increasinge elments
+
+loop i through heights:
+    if height >= whats in the stack
+        push i to stack
+    else
+        pop from stack;
+        height is the value at whatever index you popped off
+        
+        width is if stack is empty, then what you have is smaller than all previoiusly seen heights 
+            so width is i
+            if stack is not empty - it is  i - the last large value seen which is stack.peek -1 
+            
+            set max area
+            
+return max area;
+
+*/
