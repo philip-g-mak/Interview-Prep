@@ -16,3 +16,12 @@ class Solution {
         return t2Profit;
     }
 }
+
+/*
+idea - two transactions
+
+maximize transaction 1
+
+then use the profit of transation 1 to reinvest and sell 
+    - reinvest so we're trying to find the minimum of price - t1profit (t1 profit offsets this price)
+*/
