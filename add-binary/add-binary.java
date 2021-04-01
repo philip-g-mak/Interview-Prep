@@ -1,6 +1,9 @@
 import java.math.BigInteger;
 class Solution {
     public String addBinary(String a, String b) {
+        if(a.equals("0")) return b;
+        if(b.equals("0")) return a;
+        
         BigInteger x = new BigInteger(a, 2);
         BigInteger y = new BigInteger(b, 2);
         
@@ -8,13 +11,13 @@ class Solution {
         BigInteger answer = new BigInteger("0",2);
         BigInteger carry = new BigInteger("0",2);
         
-       do{
+       while(y.compareTo(zero) != 0){
             answer = x.xor(y);
             carry = (x.and(y)).shiftLeft(1);
             
             x = answer;
             y = carry;
-        } while(y.compareTo(zero) != 0);
+        } 
         
         return answer.toString(2);
     }
